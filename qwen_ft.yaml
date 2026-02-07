@@ -1,0 +1,32 @@
+base_model: Qwen/Qwen2.5-7B
+model_type: AutoModelForCausalLM
+tokenizer_type: AutoTokenizer
+
+datasets:
+  - path: data.jsonl
+    type: alpaca
+
+load_in_8bit: false
+load_in_4bit: false
+bf16: true
+fp16: false
+
+sequence_len: 2048
+micro_batch_size: 1
+gradient_accumulation_steps: 8
+
+optimizer: adamw_torch
+learning_rate: 2e-5
+num_epochs: 3
+
+gradient_checkpointing: true
+fsdp: 
+  - full_shard 
+  - auto_wrap
+
+# === Logging & saving ===
+output_dir: ./outputs/qwen2.5-7b-ft
+logging_steps: 10
+save_steps: 200
+save_total_limit: 2
+

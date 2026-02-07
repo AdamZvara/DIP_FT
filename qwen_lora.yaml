@@ -1,0 +1,55 @@
+# === Base model ===
+base_model: Qwen/Qwen2.5-7B
+model_type: AutoModelForCausalLM
+tokenizer_type: AutoTokenizer
+
+# === Dataset ===
+datasets:
+  - path: /storage/brno2/home/xzvara01/ft/data_dup.jsonl
+    type: alpaca
+
+dataset_prepared_path: data/prepared
+val_set_size: 0.05
+
+# === Training ===
+sequence_len: 2048
+num_epochs: 3
+learning_rate: 2e-4   # LoRA can use higher LR
+
+micro_batch_size: 1
+gradient_accumulation_steps: 8
+
+# === Precision ===
+bf16: true
+fp16: false
+
+# === Memory & speed ===
+gradient_checkpointing: true
+
+# === LoRA adapter ===
+adapter: lora
+lora_r: 8
+lora_alpha: 16
+lora_dropout: 0.05
+
+# Target attention projections (best default for code models)
+lora_target_modules:
+  - q_proj
+  - v_proj
+
+# (Optional) restrict LoRA to top layers only
+# lora_target_layers:
+#   - 24
+#   - 25
+#   - 26
+#   - 27
+
+# === Optimizer ===
+optimizer: adamw_torch
+
+# === Logging & saving ===
+output_dir: ./outputs/qwen2.5-7b-lora-duplicated
+logging_steps: 10
+save_steps: 200
+save_total_limit: 2
+
