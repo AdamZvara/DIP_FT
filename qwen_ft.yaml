@@ -19,8 +19,6 @@ optimizer: adamw_torch
 learning_rate: 2e-5
 num_epochs: 3
 
-gradient_checkpointing: true
-
 fsdp: true
 fsdp_config:
   sharding_strategy: FULL_SHARD
