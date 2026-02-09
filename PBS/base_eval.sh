@@ -19,5 +19,3 @@ if [ ! -d $HOME/.conda/ ]; then
     ln -s "$DATADIR/.conda" $HOME/.conda
 fi
 conda activate thestack
-
-

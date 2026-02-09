@@ -20,9 +20,15 @@ learning_rate: 2e-5
 num_epochs: 3
 
 gradient_checkpointing: true
-fsdp: 
-  - full_shard 
-  - auto_wrap
+
+fsdp: true
+fsdp_config:
+  sharding_strategy: FULL_SHARD
+  auto_wrap_policy: TRANSFORMER_BASED_WRAP
+  activation_checkpointing: true
+  cpu_offload: false
+  backward_prefetch: BACKWARD_PRE
+  forward_prefetch: false
 
 # === Logging & saving ===
 output_dir: ./outputs/qwen2.5-7b-ft
