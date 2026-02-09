@@ -6,6 +6,8 @@ datasets:
   - path: data.jsonl
     type: alpaca
 
+dataset_processes: 2
+
 load_in_8bit: false
 load_in_4bit: false
 bf16: true
@@ -19,7 +21,10 @@ optimizer: adamw_torch
 learning_rate: 2e-5
 num_epochs: 3
 
-fsdp: true
+fsdp:
+  - full_shard
+  - auto_wrap
+
 fsdp_config:
   sharding_strategy: FULL_SHARD
   auto_wrap_policy: TRANSFORMER_BASED_WRAP
