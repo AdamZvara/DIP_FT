@@ -6,8 +6,12 @@
 source /storage/brno2/home/xzvara01/ft/PBS/base_eval.sh
 
 export AXOLOTL_DO_NOT_TRACK=0
+export AXOLOTL_TELEMETRY_DISABLED=0
 
 cd $DATADIR/ft
-accelerate launch -m axolotl.cli.train $BRNO/ft/qwen_ft.yaml
+accelerate launch \
+  --num_processes=2 \
+  -m axolotl.cli.train \
+  $DATADIR/ft/qwen_ft.yaml
 
 clean_scratch
