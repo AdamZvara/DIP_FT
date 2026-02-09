@@ -14,10 +14,6 @@ echo "$(date) $PBS_JOBID is running on node `hostname -f` in a scratch directory
 # if scratch directory is not set, issue error message and exit
 test -n "$SCRATCHDIR" || { echo >&2 "Variable SCRATCHDIR is not set!"; exit 1; }
 
-# copy memit into scratch directory
-cp $DATADIR/memit $SCRATCHDIR -r || { echo >&2 "Error while copying input file(s)!"; exit 2; }
-cd $SCRATCHDIR/memit
-
 # setup conda environment
 if [ ! -d $HOME/.conda/ ]; then
     ln -s "$DATADIR/.conda" $HOME/.conda
