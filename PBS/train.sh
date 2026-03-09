@@ -19,7 +19,7 @@ export AXOLOTL_DO_NOT_TRACK=1 AXOLOTL_TELEMETRY_DISABLED=1
 
 bash scripts/run_training.sh \
     "${PROJECT_ROOT}/configs/qwen_${CONFIG}.yaml" \
-    "${DATASET}" \
+    "${PROJECT_ROOT}/${DATASET}" \
     "${OUTPUT_DIR}" \
     "${NGPU}"
 
