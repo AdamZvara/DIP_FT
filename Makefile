@@ -4,7 +4,8 @@ PBS_OUT_DIR ?= .
 CONFIG     ?= ft
 NGPU       ?= 2
 WALLTIME   ?= 1:00:00
-OUTPUT_DIR ?= outputs/qwen_$(CONFIG)_$(shell date +%Y%m%d_%H%M%S)
+RUNS_DIR   ?= outputs
+OUTPUT_DIR ?= $(RUNS_DIR)/qwen_$(CONFIG)_$(shell date +%Y%m%d_%H%M%S)
 # DATASET has no default - users must provide it
 
 CONFIG_FILE := configs/qwen_$(CONFIG).yaml
