@@ -5,11 +5,8 @@ tokenizer_type: AutoTokenizer
 
 # === Dataset ===
 datasets:
-  - path: /storage/brno2/home/xzvara01/ft/data_dup.jsonl
+  - path: INJECTED
     type: alpaca
-
-dataset_prepared_path: data/prepared
-val_set_size: 0.05
 
 # === Training ===
 sequence_len: 2048
@@ -48,7 +45,7 @@ lora_target_modules:
 optimizer: adamw_torch
 
 # === Logging & saving ===
-output_dir: ./outputs/qwen2.5-7b-lora-duplicated
+output_dir: INJECTED
 logging_steps: 10
 save_steps: 200
 save_total_limit: 2

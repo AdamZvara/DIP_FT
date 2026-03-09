@@ -3,7 +3,7 @@ model_type: AutoModelForCausalLM
 tokenizer_type: AutoTokenizer
 
 datasets:
-  - path: data.jsonl
+  - path: INJECTED
     type: alpaca
 
 dataset_processes: 2
@@ -34,7 +34,7 @@ fsdp_config:
   forward_prefetch: false
 
 # === Logging & saving ===
-output_dir: ./outputs/qwen2.5-7b-ft
+output_dir: INJECTED
 logging_steps: 10
 save_steps: 200
 save_total_limit: 2
