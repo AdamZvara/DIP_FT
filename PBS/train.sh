@@ -18,7 +18,7 @@ export WANDB_DISABLED=true COMET_MODE=disabled HF_MLFLOW_LOG_ARTIFACTS=false
 export AXOLOTL_DO_NOT_TRACK=1 AXOLOTL_TELEMETRY_DISABLED=1
 
 bash scripts/run_training.sh \
-    "configs/qwen_${CONFIG}.yaml" \
+    "${PROJECT_ROOT}/configs/qwen_${CONFIG}.yaml" \
     "${DATASET}" \
     "${OUTPUT_DIR}" \
     "${NGPU}"
