@@ -28,13 +28,14 @@ help:
 	@echo "  WALLTIME=1:00:00 (default: 1:00:00, PBS only)"
 
 train:
-	@test -n "$(DATASET)" || { echo "ERROR: DATASET is required"; exit 1; }
+	@test -f "$(DATASET)" || { echo "ERROR: DATASET not found: $(DATASET)"; exit 1; }
 	@test -f "$(CONFIG_FILE)" || { echo "ERROR: $(CONFIG_FILE) not found"; exit 1; }
 	bash scripts/run_training.sh "$(CONFIG_FILE)" "$(DATASET)" "$(OUTPUT_DIR)" "$(NGPU)"
 
 train-pbs:
-	@test -n "$(DATASET)" || { echo "ERROR: DATASET is required"; exit 1; }
+	@test -f "$(DATASET)" || { echo "ERROR: DATASET not found: $(DATASET)"; exit 1; }
 	@test -f "$(CONFIG_FILE)" || { echo "ERROR: $(CONFIG_FILE) not found"; exit 1; }
+	@test -d "$(PBS_OUT_DIR)" || { echo "ERROR: PBS_OUT_DIR does not exist: $(PBS_OUT_DIR)"; exit 1; }
 	qsub \
 		-l select=1:ncpus=2:mem=64gb:scratch_local=128gb:ngpus=$(NGPU) \
 		-l walltime=$(WALLTIME) \
