@@ -1,6 +1,6 @@
 #!/bin/bash
 #PBS -N axolotl_train
-#PBS -l select=1:ncpus=1:mem=64gb:scratch_local=20gb:ngpus=1:gpu_mem=60gb
+#PBS -l select=1:ncpus=2:mem=64gb:scratch_local=20gb:ngpus=2:gpu_mem=60gb
 #PBS -l walltime=3:00:00
 
 set -euo pipefail
