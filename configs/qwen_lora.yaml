@@ -46,7 +46,7 @@ optimizer: adamw_torch
 
 # === Logging & saving ===
 output_dir: INJECTED
-logging_steps: 10
+logging_steps: 1
 save_steps: 200
 save_total_limit: 2
 

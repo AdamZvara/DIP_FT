@@ -13,6 +13,7 @@ source PBS/base.sh
 : "${DATASET:?DATASET PBS variable required}"
 : "${OUTPUT_DIR:?OUTPUT_DIR PBS variable required}"
 NGPU="${NGPU:-2}"
+TRAIN_SIZE="${TRAIN_SIZE:-}"
 
 export WANDB_DISABLED=true COMET_MODE=disabled HF_MLFLOW_LOG_ARTIFACTS=false
 export AXOLOTL_DO_NOT_TRACK=1 AXOLOTL_TELEMETRY_DISABLED=1
@@ -21,6 +22,7 @@ bash scripts/run_training.sh \
     "${PROJECT_ROOT}/configs/qwen_${CONFIG}.yaml" \
     "${PROJECT_ROOT}/${DATASET}" \
     "${OUTPUT_DIR}" \
-    "${NGPU}"
+    "${NGPU}" \
+    "${TRAIN_SIZE}"
 
 clean_scratch

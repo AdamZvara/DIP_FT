@@ -6,6 +6,7 @@ CONFIG_FILE="${1:?CONFIG_FILE required}"
 DATASET="${2:?DATASET required}"
 OUTPUT_DIR="${3:?OUTPUT_DIR required}"
 NGPU="${4:-2}"
+TRAIN_SIZE="${5:-}"
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(dirname "$SCRIPT_DIR")"
@@ -31,12 +32,14 @@ trap 'rm -f "$TEMP_CONFIG"' EXIT
 ABS_OUTPUT="$(python3 -c "import os,sys; print(os.path.abspath(sys.argv[1]))" "$OUTPUT_DIR")"
 mkdir -p "$ABS_OUTPUT"
 
+PATCH_ARGS=(--dataset "$DATASET" --output-dir "$ABS_OUTPUT")
+[ -n "$TRAIN_SIZE" ] && PATCH_ARGS+=(--train-size "$TRAIN_SIZE")
+
 python3 "$SCRIPT_DIR/patch_config.py" \
     "$CONFIG_FILE" "$TEMP_CONFIG" \
-    --dataset "$DATASET" \
-    --output-dir "$ABS_OUTPUT"
+    "${PATCH_ARGS[@]}"
 
-echo "=== Config patched: dataset=$DATASET output_dir=$ABS_OUTPUT ==="
+echo "=== Config patched: dataset=$DATASET output_dir=$ABS_OUTPUT${TRAIN_SIZE:+ train_size=$TRAIN_SIZE} ==="
 
 # Start GPU monitor (background)
 MONITOR_PID=""

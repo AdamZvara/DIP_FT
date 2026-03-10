@@ -6,6 +6,7 @@ NGPU       ?= 2
 WALLTIME   ?= 1:00:00
 RUNS_DIR   ?= outputs
 OUTPUT_DIR ?= $(RUNS_DIR)/qwen_$(CONFIG)_$(shell date +%Y%m%d_%H%M%S)
+TRAIN_SIZE ?=
 # DATASET has no default - users must provide it
 
 CONFIG_FILE := configs/qwen_$(CONFIG).yaml
@@ -23,15 +24,16 @@ help:
 	@echo "  DATASET=<path>   Path to .jsonl training file"
 	@echo ""
 	@echo "Optional:"
-	@echo "  CONFIG=ft|lora   (default: ft)"
-	@echo "  OUTPUT_DIR=...   (default: outputs/qwen_<CONFIG>_<timestamp>)"
-	@echo "  NGPU=2           (default: 2)"
-	@echo "  WALLTIME=1:00:00 (default: 1:00:00, PBS only)"
+	@echo "  CONFIG=ft|lora     (default: ft)"
+	@echo "  OUTPUT_DIR=...     (default: outputs/qwen_<CONFIG>_<timestamp>)"
+	@echo "  NGPU=2             (default: 2)"
+	@echo "  WALLTIME=1:00:00   (default: 1:00:00, PBS only)"
+	@echo "  TRAIN_SIZE=N       Use first N samples for train, rest for eval (default: all, no eval)"
 
 train:
 	@test -f "$(DATASET)" || { echo "ERROR: DATASET not found: $(DATASET)"; exit 1; }
 	@test -f "$(CONFIG_FILE)" || { echo "ERROR: $(CONFIG_FILE) not found"; exit 1; }
-	bash scripts/run_training.sh "$(CONFIG_FILE)" "$(DATASET)" "$(OUTPUT_DIR)" "$(NGPU)"
+	bash scripts/run_training.sh "$(CONFIG_FILE)" "$(DATASET)" "$(OUTPUT_DIR)" "$(NGPU)" "$(TRAIN_SIZE)"
 
 train-pbs:
 	@test -f "$(DATASET)" || { echo "ERROR: DATASET not found: $(DATASET)"; exit 1; }
@@ -42,7 +44,7 @@ train-pbs:
 		-l walltime=$(WALLTIME) \
 		-o $(PBS_OUT_DIR)/$(CONFIG)_$(_TS).out \
 		-e $(PBS_OUT_DIR)/$(CONFIG)_$(_TS).err \
-		-v CONFIG=$(CONFIG),DATASET=$(DATASET),OUTPUT_DIR=$(OUTPUT_DIR),NGPU=$(NGPU) \
+		-v CONFIG=$(CONFIG),DATASET=$(DATASET),OUTPUT_DIR=$(OUTPUT_DIR),NGPU=$(NGPU),TRAIN_SIZE=$(TRAIN_SIZE) \
 		PBS/train.sh
 
 merge:
