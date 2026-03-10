@@ -9,8 +9,8 @@ def main():
     parser.add_argument("dst")
     parser.add_argument("--dataset", required=True)
     parser.add_argument("--output-dir", required=True)
-    parser.add_argument("--train-size", type=int, default=None,
-                        help="If set, use first N samples for train and the rest for eval")
+    parser.add_argument("--train-size", default=None,
+                        help="If set, use first N samples or N%% of samples for train and the rest for eval")
     args = parser.parse_args()
 
     try:
