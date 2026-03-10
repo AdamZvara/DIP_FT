@@ -7,6 +7,7 @@ WALLTIME   ?= 1:00:00
 RUNS_DIR   ?= outputs
 OUTPUT_DIR ?= $(RUNS_DIR)/qwen_$(CONFIG)_$(shell date +%Y%m%d_%H%M%S)
 TRAIN_SIZE ?=
+GPU_MEM   ?= 60gb
 # DATASET has no default - users must provide it
 
 CONFIG_FILE := configs/qwen_$(CONFIG).yaml
@@ -40,7 +41,7 @@ train-pbs:
 	@test -f "$(CONFIG_FILE)" || { echo "ERROR: $(CONFIG_FILE) not found"; exit 1; }
 	@test -d "$(PBS_OUT_DIR)" || { echo "ERROR: PBS_OUT_DIR does not exist: $(PBS_OUT_DIR)"; exit 1; }
 	qsub \
-		-l select=1:ncpus=2:mem=64gb:scratch_local=128gb:ngpus=$(NGPU) \
+		-l select=1:ncpus=$(NGPU):mem=64gb:scratch_local=128gb:ngpus=$(NGPU):gpu_mem=$(GPU_MEM) \
 		-l walltime=$(WALLTIME) \
 		-o $(PBS_OUT_DIR)/$(CONFIG)_$(_TS).out \
 		-e $(PBS_OUT_DIR)/$(CONFIG)_$(_TS).err \
