@@ -8,6 +8,8 @@ datasets:
   - path: INJECTED
     type: alpaca
 
+eval_steps: 10
+
 # === Training ===
 sequence_len: 2048
 num_epochs: 3
