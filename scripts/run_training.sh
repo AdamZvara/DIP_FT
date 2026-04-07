@@ -35,11 +35,17 @@ mkdir -p "$ABS_OUTPUT"
 PATCH_ARGS=(--dataset "$DATASET" --output-dir "$ABS_OUTPUT")
 [ -n "$TRAIN_SIZE" ] && PATCH_ARGS+=(--train-size "$TRAIN_SIZE")
 
+# Auto-detect sibling test.jsonl for static eval set
+EVAL_DATASET="$(dirname "$DATASET")/test.jsonl"
+if [ -f "$EVAL_DATASET" ]; then
+    PATCH_ARGS+=(--eval-dataset "$EVAL_DATASET")
+fi
+
 python3 "$SCRIPT_DIR/patch_config.py" \
     "$CONFIG_FILE" "$TEMP_CONFIG" \
     "${PATCH_ARGS[@]}"
 
-echo "=== Config patched: dataset=$DATASET output_dir=$ABS_OUTPUT${TRAIN_SIZE:+ train_size=$TRAIN_SIZE} ==="
+echo "=== Config patched: dataset=$DATASET output_dir=$ABS_OUTPUT${TRAIN_SIZE:+ train_size=$TRAIN_SIZE}${EVAL_DATASET:+ eval_dataset=$EVAL_DATASET} ==="
 
 # Start GPU monitor (background)
 MONITOR_PID=""

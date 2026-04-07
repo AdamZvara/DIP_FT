@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Patch axolotl YAML config fields. Usage: patch_config.py <src> <dst> --dataset PATH --output-dir DIR [--train-size N]"""
+"""Patch axolotl YAML config fields. Usage: patch_config.py <src> <dst> --dataset PATH --output-dir DIR [--eval-dataset PATH] [--train-size N]"""
 import argparse, shutil, sys
 
 
@@ -9,8 +9,10 @@ def main():
     parser.add_argument("dst")
     parser.add_argument("--dataset", required=True)
     parser.add_argument("--output-dir", required=True)
+    parser.add_argument("--eval-dataset", default=None,
+                        help="Static eval dataset path. When set, used as the fixed test set instead of splitting from train.")
     parser.add_argument("--train-size", default=None,
-                        help="If set, use first N samples or N%% of samples for train and the rest for eval")
+                        help="If set, use first N samples or N%% of samples for train (eval unaffected when --eval-dataset is given)")
     args = parser.parse_args()
 
     try:
@@ -28,6 +30,17 @@ def main():
 
     if args.train_size is not None:
         cfg["datasets"][0]["split"] = f"train[:{args.train_size}]"
+
+    if args.eval_dataset is not None:
+        # Static eval set: point test_datasets at the pre-split file, disable val_set_size splitting
+        cfg["test_datasets"] = [{
+            "path": args.eval_dataset,
+            "type": cfg["datasets"][0].get("type", "alpaca"),
+            "split": "train",
+        }]
+        cfg["val_set_size"] = 0
+    elif args.train_size is not None:
+        # Legacy behaviour: slice eval from the same file
         cfg["test_datasets"] = [{
             "path": args.dataset,
             "type": cfg["datasets"][0].get("type", "alpaca"),
