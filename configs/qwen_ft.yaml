@@ -1,7 +1,9 @@
+# === Model ===
 base_model: Qwen/Qwen2.5-7B
 model_type: AutoModelForCausalLM
 tokenizer_type: AutoTokenizer
 
+# === Dataset ===
 datasets:
   - path: INJECTED
     type: alpaca
@@ -13,14 +15,21 @@ load_in_4bit: false
 bf16: true
 fp16: false
 
+# === Training ===
 sequence_len: 2048
 micro_batch_size: 1
 gradient_accumulation_steps: 8
 
 optimizer: adamw_torch
 learning_rate: 2e-5
-num_epochs: 3
+num_epochs: 5
 
+early_stopping_patience: 3 
+load_best_model_at_end: true
+
+eval_steps: 100
+
+# === Distribution ===
 fsdp:
   - full_shard
   - auto_wrap
@@ -35,7 +44,7 @@ fsdp_config:
 
 # === Logging & saving ===
 output_dir: INJECTED
-logging_steps: 1
 save_steps: 200
+logging_steps: 1
 save_total_limit: 2
 

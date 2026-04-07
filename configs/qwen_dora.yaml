@@ -31,6 +31,7 @@ adapter: lora
 lora_r: 8
 lora_alpha: 16
 lora_dropout: 0.1
+peft_use_dora: true
 
 # Target attention projections (best default for code models)
 lora_target_modules:
