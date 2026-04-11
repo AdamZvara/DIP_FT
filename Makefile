@@ -52,3 +52,11 @@ merge:
 	@test "$(CONFIG)" = "lora" || { echo "ERROR: merge only applies to CONFIG=lora"; exit 1; }
 	@test -n "$(OUTPUT_DIR)" || { echo "ERROR: OUTPUT_DIR is required"; exit 1; }
 	bash scripts/post_process.sh "$(CONFIG_FILE)" "$(OUTPUT_DIR)" lora
+
+auth-sizes:
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/train.jsonl NGPU=2 WALLTIME=3:00:00 TRAIN_SIZE=1
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/train.jsonl NGPU=2 WALLTIME=3:00:00 TRAIN_SIZE=10
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/train.jsonl NGPU=2 WALLTIME=3:00:00 TRAIN_SIZE=20
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/train.jsonl NGPU=2 WALLTIME=3:00:00 TRAIN_SIZE=30
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/train.jsonl NGPU=2 WALLTIME=3:00:00 TRAIN_SIZE=50
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/train.jsonl NGPU=2 WALLTIME=3:00:00 TRAIN_SIZE=100
