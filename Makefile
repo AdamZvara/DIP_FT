@@ -55,9 +55,9 @@ merge:
 	bash scripts/post_process.sh "$(CONFIG_FILE)" "$(OUTPUT_DIR)" lora
 
 auth-sizes:
-	$(MAKE) train-pbs CONFIG=lora DATASET=data/train.jsonl NGPU=2 WALLTIME=3:00:00 TRAIN_SIZE=1
-	$(MAKE) train-pbs CONFIG=lora DATASET=data/train.jsonl NGPU=2 WALLTIME=3:00:00 TRAIN_SIZE=10
-	$(MAKE) train-pbs CONFIG=lora DATASET=data/train.jsonl NGPU=2 WALLTIME=3:00:00 TRAIN_SIZE=20
-	$(MAKE) train-pbs CONFIG=lora DATASET=data/train.jsonl NGPU=2 WALLTIME=3:00:00 TRAIN_SIZE=30
-	$(MAKE) train-pbs CONFIG=lora DATASET=data/train.jsonl NGPU=2 WALLTIME=3:00:00 TRAIN_SIZE=50
-	$(MAKE) train-pbs CONFIG=lora DATASET=data/train.jsonl NGPU=2 WALLTIME=3:00:00 TRAIN_SIZE=100
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/auth/train_1.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/auth/train_10.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/auth/train_30.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/auth/train_60.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/auth/train_100.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/auth/train_500.jsonl NGPU=2 WALLTIME=3:00:00
