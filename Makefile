@@ -40,6 +40,7 @@ train-pbs:
 	@test -f "$(DATASET)" || { echo "ERROR: DATASET not found: $(DATASET)"; exit 1; }
 	@test -f "$(CONFIG_FILE)" || { echo "ERROR: $(CONFIG_FILE) not found"; exit 1; }
 	@test -d "$(PBS_OUT_DIR)" || { echo "ERROR: PBS_OUT_DIR does not exist: $(PBS_OUT_DIR)"; exit 1; }
+	@sleep 2
 	qsub \
 		-l select=1:ncpus=$(NGPU):mem=64gb:scratch_local=128gb:ngpus=$(NGPU):gpu_mem=$(GPU_MEM) \
 		-l walltime=$(WALLTIME) \
