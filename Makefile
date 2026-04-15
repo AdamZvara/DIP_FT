@@ -54,10 +54,23 @@ merge:
 	@test -n "$(OUTPUT_DIR)" || { echo "ERROR: OUTPUT_DIR is required"; exit 1; }
 	bash scripts/post_process.sh "$(CONFIG_FILE)" "$(OUTPUT_DIR)" lora
 
-auth-sizes:
-	$(MAKE) train-pbs CONFIG=lora DATASET=data/auth/train_1.jsonl NGPU=2 WALLTIME=3:00:00
-	$(MAKE) train-pbs CONFIG=lora DATASET=data/auth/train_10.jsonl NGPU=2 WALLTIME=3:00:00
+auth-lora-sizes:
 	$(MAKE) train-pbs CONFIG=lora DATASET=data/auth/train_30.jsonl NGPU=2 WALLTIME=3:00:00
 	$(MAKE) train-pbs CONFIG=lora DATASET=data/auth/train_60.jsonl NGPU=2 WALLTIME=3:00:00
 	$(MAKE) train-pbs CONFIG=lora DATASET=data/auth/train_100.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/auth/train_250.jsonl NGPU=2 WALLTIME=3:00:00
 	$(MAKE) train-pbs CONFIG=lora DATASET=data/auth/train_500.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/auth/train_750.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/auth/train_1000.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/auth/train_1250.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/auth/train_1500.jsonl NGPU=2 WALLTIME=3:00:00
+
+auth-ft-sizes:
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/auth/train_60.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/auth/train_100.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/auth/train_250.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/auth/train_500.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/auth/train_750.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/auth/train_1000.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/auth/train_1250.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/auth/train_1500.jsonl NGPU=2 WALLTIME=3:00:00
