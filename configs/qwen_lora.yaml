@@ -9,6 +9,7 @@ datasets:
     type: alpaca
 
 # === Training ===
+seed: 10234
 sequence_len: 2048
 num_epochs: 5
 learning_rate: 1e-4 
@@ -41,7 +42,7 @@ lora_target_modules:
 optimizer: adamw_torch
 
 # === Evaluation ===
-eval_steps: 100
+eval_steps: 20
 
 # === Logging & saving ===
 output_dir: INJECTED

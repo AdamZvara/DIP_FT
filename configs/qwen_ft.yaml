@@ -16,6 +16,7 @@ bf16: true
 fp16: false
 
 # === Training ===
+seed: 10234
 sequence_len: 2048
 micro_batch_size: 1
 gradient_accumulation_steps: 8
@@ -27,7 +28,7 @@ num_epochs: 5
 early_stopping_patience: 3 
 load_best_model_at_end: true
 
-eval_steps: 100
+eval_steps: 50
 
 # === Distribution ===
 fsdp:
