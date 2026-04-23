@@ -74,3 +74,53 @@ auth-ft-sizes:
 	$(MAKE) train-pbs CONFIG=ft DATASET=data/auth/train_1000.jsonl NGPU=2 WALLTIME=3:00:00
 	$(MAKE) train-pbs CONFIG=ft DATASET=data/auth/train_1250.jsonl NGPU=2 WALLTIME=3:00:00
 	$(MAKE) train-pbs CONFIG=ft DATASET=data/auth/train_1500.jsonl NGPU=2 WALLTIME=3:00:00
+
+hash-lora-sizes:
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/hashing/train_30.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/hashing/train_60.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/hashing/train_100.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/hashing/train_250.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/hashing/train_500.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/hashing/train_750.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/hashing/train_1000.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/hashing/train_1250.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/hashing/train_1500.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/hashing/train_2000.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/hashing/train_2500.jsonl NGPU=2 WALLTIME=3:00:00
+
+hash-ft-sizes:
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/hashing/train_30.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/hashing/train_60.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/hashing/train_100.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/hashing/train_250.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/hashing/train_500.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/hashing/train_750.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/hashing/train_1000.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/hashing/train_1250.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/hashing/train_1500.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/hashing/train_2000.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/hashing/train_2500.jsonl NGPU=2 WALLTIME=3:00:00
+
+supply-lora-sizes:
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/supply_chain/train_30.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/supply_chain/train_60.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/supply_chain/train_100.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/supply_chain/train_250.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/supply_chain/train_500.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/supply_chain/train_750.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/supply_chain/train_1000.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/supply_chain/train_1250.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/supply_chain/train_1500.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/supply_chain/train_1750.jsonl NGPU=2 WALLTIME=3:00:00
+
+supply-ft-sizes:
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/supply_chain/train_30.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/supply_chain/train_60.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/supply_chain/train_100.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/supply_chain/train_250.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/supply_chain/train_500.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/supply_chain/train_750.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/supply_chain/train_1000.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/supply_chain/train_1250.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/supply_chain/train_1500.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/supply_chain/train_1750.jsonl NGPU=2 WALLTIME=3:00:00
