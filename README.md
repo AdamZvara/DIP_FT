@@ -57,12 +57,6 @@ make train CONFIG=ft DATASET=data/auth/train.jsonl
 
 # LoRA
 make train CONFIG=lora DATASET=data/auth/train.jsonl
-
-# Use only first 500 samples for training, rest as eval
-make train CONFIG=lora DATASET=data/auth/train.jsonl TRAIN_SIZE=500
-
-# Custom output directory
-make train CONFIG=ft DATASET=data/auth/train.jsonl OUTPUT_DIR=outputs/my_run
 ```
 
 If a `test.jsonl` file exists in the same directory as `DATASET`, it is automatically used as a static evaluation set.
@@ -75,14 +69,6 @@ make train-pbs CONFIG=lora DATASET=data/hashing/train_500.jsonl NGPU=2 WALLTIME=
 ```
 
 PBS stdout/stderr are written to `$PBS_OUT_DIR/<CONFIG>_<timestamp>.{out,err}`.
-
-### Merge LoRA adapter weights
-
-LoRA merge runs automatically after training. To re-run manually:
-
-```bash
-make merge CONFIG=lora OUTPUT_DIR=outputs/qwen_lora_20260309_120000
-```
 
 ### All Makefile options
 
