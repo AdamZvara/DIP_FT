@@ -1,9 +1,14 @@
+# Axolotl configuration file for full fine-tuning
+#
+# Author: Adam Zvara (xzvara01)
+# Date: 02/2026
+
 # === Model ===
 base_model: Qwen/Qwen2.5-7B
 model_type: AutoModelForCausalLM
 tokenizer_type: AutoTokenizer
 
-# === Dataset ===
+# === Dataset (is injected at runtime) ===
 datasets:
   - path: INJECTED
     type: alpaca

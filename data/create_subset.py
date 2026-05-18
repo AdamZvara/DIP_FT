@@ -1,5 +1,10 @@
 #!/usr/bin/env python3
-"""Randomly sample N items from a .jsonl dataset and write to NAME_N.jsonl."""
+"""
+Randomly sample N items from a .jsonl dataset and write to NAME_N.jsonl.
+
+Author: Adam Zvara (xzvara01)
+Date: 04/2026
+"""
 
 import argparse
 import json

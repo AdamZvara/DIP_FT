@@ -1,5 +1,9 @@
 #!/bin/bash
 # Usage: run_training.sh <CONFIG_FILE> <DATASET> <OUTPUT_DIR> [NGPU=2]
+#
+# Author: Adam Zvara (xzvara01)
+# Date: 03/2026
+
 set -euo pipefail
 
 CONFIG_FILE="${1:?CONFIG_FILE required}"

@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Background GPU monitor. Writes JSON metrics on SIGTERM/SIGINT."""
+"""
+Background GPU monitor. Writes JSON metrics on SIGTERM/SIGINT.
+
+Author: Adam Zvara (xzvara01)
+Date: 03/2026
+"""
+
 import argparse
 import json
 import signal

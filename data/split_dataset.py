@@ -8,6 +8,9 @@ Test samples are guaranteed not to appear in the train set.
 Usage:
     python data/split_dataset.py --test-size 200
     python data/split_dataset.py --input data/auth_full.jsonl --test-size 200 --output-dir data/ --seed 42
+
+Author: Adam Zvara (xzvara01)
+Date: 04/2026
 """
 
 import argparse

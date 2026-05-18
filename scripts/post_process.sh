@@ -1,5 +1,11 @@
 #!/bin/bash
 # Usage: post_process.sh <CONFIG_FILE> <OUTPUT_DIR> <ADAPTER_TYPE>
+#
+# Post process tasks (LoRA weight merging)
+#
+# Author: Adam Zvara (xzvara01)
+# Date: 03/2026
+
 set -euo pipefail
 
 CONFIG_FILE="${1:?required}"; OUTPUT_DIR="${2:?required}"; ADAPTER_TYPE="${3:?required}"

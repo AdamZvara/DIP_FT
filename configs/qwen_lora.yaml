@@ -1,9 +1,14 @@
+# Axolotl configuration file for LoRA
+#
+# Author: Adam Zvara (xzvara01)
+# Date: 02/2026
+
 # === Base model ===
 base_model: Qwen/Qwen2.5-7B
 model_type: AutoModelForCausalLM
 tokenizer_type: AutoTokenizer
 
-# === Dataset ===
+# === Dataset (injected during runtime) ===
 datasets:
   - path: INJECTED
     type: alpaca

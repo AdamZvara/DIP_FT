@@ -85,8 +85,8 @@ hash-lora-sizes:
 	$(MAKE) train-pbs CONFIG=lora DATASET=data/hashing/train_1000.jsonl NGPU=2 WALLTIME=3:00:00
 	$(MAKE) train-pbs CONFIG=lora DATASET=data/hashing/train_1250.jsonl NGPU=2 WALLTIME=3:00:00
 	$(MAKE) train-pbs CONFIG=lora DATASET=data/hashing/train_1500.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=lora DATASET=data/hashing/train_1750.jsonl NGPU=2 WALLTIME=3:00:00
 	$(MAKE) train-pbs CONFIG=lora DATASET=data/hashing/train_2000.jsonl NGPU=2 WALLTIME=3:00:00
-	$(MAKE) train-pbs CONFIG=lora DATASET=data/hashing/train_2500.jsonl NGPU=2 WALLTIME=3:00:00
 
 hash-ft-sizes:
 	$(MAKE) train-pbs CONFIG=ft DATASET=data/hashing/train_30.jsonl NGPU=2 WALLTIME=3:00:00
@@ -98,8 +98,8 @@ hash-ft-sizes:
 	$(MAKE) train-pbs CONFIG=ft DATASET=data/hashing/train_1000.jsonl NGPU=2 WALLTIME=3:00:00
 	$(MAKE) train-pbs CONFIG=ft DATASET=data/hashing/train_1250.jsonl NGPU=2 WALLTIME=3:00:00
 	$(MAKE) train-pbs CONFIG=ft DATASET=data/hashing/train_1500.jsonl NGPU=2 WALLTIME=3:00:00
+	$(MAKE) train-pbs CONFIG=ft DATASET=data/hashing/train_1750.jsonl NGPU=2 WALLTIME=3:00:00
 	$(MAKE) train-pbs CONFIG=ft DATASET=data/hashing/train_2000.jsonl NGPU=2 WALLTIME=3:00:00
-	$(MAKE) train-pbs CONFIG=ft DATASET=data/hashing/train_2500.jsonl NGPU=2 WALLTIME=3:00:00
 
 supply-lora-sizes:
 	$(MAKE) train-pbs CONFIG=lora DATASET=data/supply_chain/train_30.jsonl NGPU=2 WALLTIME=3:00:00
@@ -124,3 +124,10 @@ supply-ft-sizes:
 	$(MAKE) train-pbs CONFIG=ft DATASET=data/supply_chain/train_1250.jsonl NGPU=2 WALLTIME=3:00:00
 	$(MAKE) train-pbs CONFIG=ft DATASET=data/supply_chain/train_1500.jsonl NGPU=2 WALLTIME=3:00:00
 	$(MAKE) train-pbs CONFIG=ft DATASET=data/supply_chain/train_1750.jsonl NGPU=2 WALLTIME=3:00:00
+
+clean:
+	find . -type d -name __pycache__ -exec rm -rf {} +
+	find . -type f -name "*.pyc" -delete
+	find . -type f -name "*.pyo" -delete
+	rm -rf .pytest_cache .ruff_cache .venv
+	rm -rf .mypy_cache .tox dist build *.egg-info

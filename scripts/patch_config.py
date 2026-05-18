@@ -1,5 +1,11 @@
 #!/usr/bin/env python3
-"""Patch axolotl YAML config fields. Usage: patch_config.py <src> <dst> --dataset PATH --output-dir DIR [--eval-dataset PATH] [--train-size N]"""
+"""
+Patch axolotl YAML config fields. 
+Usage: patch_config.py <src> <dst> --dataset PATH --output-dir DIR [--eval-dataset PATH] [--train-size N]
+
+Author: Adam Zvara (xzvara01)
+Date: 03/2026
+"""
 import argparse, shutil, sys
 
 

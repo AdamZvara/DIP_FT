@@ -1,4 +1,7 @@
 #!/bin/bash
+# Run training with given configuration 
+# Author: Adam Zvara (xzvara01)
+# Date: 03/2026
 #PBS -N axolotl_train
 #PBS -l select=1:ncpus=2:mem=64gb:scratch_local=20gb:ngpus=2:gpu_mem=60gb
 #PBS -l walltime=3:00:00
