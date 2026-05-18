@@ -295,32 +295,6 @@ def import_run(run_dir: Path, experiment_id: str, client: mlflow.tracking.Mlflow
 
         log_training_data_html(run_dir)
 
-        run_id = run.info.run_id
-
-    # # --- Register model version ---
-    # try:
-    #     client.create_registered_model(model_name)
-    # except mlflow.exceptions.MlflowException:
-    #     pass  # already exists
-
-    # mv = client.create_model_version(
-    #     name=model_name,
-    #     source=f"runs:/{run_id}/",
-    #     run_id=run_id,
-    #     description=f"Fine-tuning run: {run_name}",
-    # )
-    # client.set_model_version_tag(model_name, mv.version, "run_name", run_name)
-    # client.set_model_version_tag(model_name, mv.version, "run_type", run_type)
-    # if gpu_data:
-    #     client.set_model_version_tag(model_name, mv.version, "duration_s", str(gpu_data.get("duration_s", "")))
-    #     client.set_model_version_tag(model_name, mv.version, "total_energy_kwh", str(gpu_data.get("total_energy_kwh", "")))
-    # if log_history:
-    #     train_steps = [e for e in log_history if "loss" in e]
-    #     if train_steps:
-    #         client.set_model_version_tag(model_name, mv.version, "final_train_loss", f"{train_steps[-1]['loss']:.4f}")
-
-    # print(f"  {run_name} → {model_name} v{mv.version} (run_id={run_id[:8]})")
-
 
 def main():
     import argparse
