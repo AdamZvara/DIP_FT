@@ -17,7 +17,7 @@ dataset_processes: 2
 
 load_in_8bit: false
 load_in_4bit: false
-bf16: true
+bf16: false
 fp16: false
 
 # === Training ===
@@ -29,11 +29,12 @@ gradient_accumulation_steps: 8
 optimizer: adamw_torch
 learning_rate: 2e-5
 num_epochs: 5
+weight_decay: 0.1
 
-early_stopping_patience: 3
+early_stopping_patience: 5
 load_best_model_at_end: true
 
-eval_steps: 50
+eval_steps: 20
 
 # === Distribution ===
 fsdp:
