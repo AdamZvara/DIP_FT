@@ -1,16 +1,17 @@
 sinclude .env            # loads PBS_OUT_DIR, HF_HOME, etc. from .env
 PBS_OUT_DIR ?= .
 
+MODEL      ?= qwen
 CONFIG     ?= ft
 NGPU       ?= 2
 WALLTIME   ?= 1:00:00
 RUNS_DIR   ?= outputs
-OUTPUT_DIR ?= $(RUNS_DIR)/qwen_$(CONFIG)_$(shell date +%Y%m%d_%H%M%S)
+OUTPUT_DIR ?= $(RUNS_DIR)/$(MODEL)_$(CONFIG)_$(shell date +%Y%m%d_%H%M%S)
 TRAIN_SIZE ?=
 GPU_MEM   ?= 60gb
 # DATASET has no default - users must provide it
 
-CONFIG_FILE := configs/qwen_$(CONFIG).yaml
+CONFIG_FILE := configs/$(MODEL)_$(CONFIG).yaml
 _TS         := $(shell date +%Y%m%d_%H%M%S)
 
 .PHONY: help train train-pbs merge
@@ -25,8 +26,9 @@ help:
 	@echo "  DATASET=<path>   Path to .jsonl training file"
 	@echo ""
 	@echo "Optional:"
+	@echo "  MODEL=qwen|llama3|codellama  (default: qwen)"
 	@echo "  CONFIG=ft|lora     (default: ft)"
-	@echo "  OUTPUT_DIR=...     (default: outputs/qwen_<CONFIG>_<timestamp>)"
+	@echo "  OUTPUT_DIR=...     (default: outputs/<MODEL>_<CONFIG>_<timestamp>)"
 	@echo "  NGPU=2             (default: 2)"
 	@echo "  WALLTIME=1:00:00   (default: 1:00:00, PBS only)"
 	@echo "  TRAIN_SIZE=N       Use first N samples for train, rest for eval (default: all, no eval)"
@@ -46,7 +48,7 @@ train-pbs:
 		-l walltime=$(WALLTIME) \
 		-o $(PBS_OUT_DIR)/$(CONFIG)_$(_TS).out \
 		-e $(PBS_OUT_DIR)/$(CONFIG)_$(_TS).err \
-		-v CONFIG=$(CONFIG),DATASET=$(DATASET),OUTPUT_DIR=$(OUTPUT_DIR),NGPU=$(NGPU),TRAIN_SIZE=$(TRAIN_SIZE) \
+		-v MODEL=$(MODEL),CONFIG=$(CONFIG),DATASET=$(DATASET),OUTPUT_DIR=$(OUTPUT_DIR),NGPU=$(NGPU),TRAIN_SIZE=$(TRAIN_SIZE) \
 		PBS/train.sh
 
 merge:
