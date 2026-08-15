@@ -1,0 +1,56 @@
+# Axolotl configuration file for full fine-tuning
+#
+# Author: Adam Zvara (xzvara01)
+# Date: 02/2026
+
+# === Model ===
+base_model: ibm-granite/granite-3.0-8b-base
+model_type: AutoModelForCausalLM
+tokenizer_type: AutoTokenizer
+
+# === Dataset (is injected at runtime) ===
+datasets:
+  - path: INJECTED
+    type: alpaca
+
+dataset_processes: 2
+
+load_in_8bit: false
+load_in_4bit: false
+bf16: false
+fp16: false
+
+# === Training ===
+seed: 10234
+sequence_len: 2048
+micro_batch_size: 1
+gradient_accumulation_steps: 8
+
+optimizer: adamw_torch
+learning_rate: 2e-5
+num_epochs: 5
+weight_decay: 0.1
+
+early_stopping_patience: 5
+load_best_model_at_end: true
+
+eval_steps: 20
+
+# === Distribution ===
+fsdp:
+  - full_shard
+  - auto_wrap
+
+fsdp_config:
+  sharding_strategy: FULL_SHARD
+  auto_wrap_policy: TRANSFORMER_BASED_WRAP
+  activation_checkpointing: true
+  cpu_offload: false
+  backward_prefetch: BACKWARD_PRE
+  forward_prefetch: false
+
+# === Logging & saving ===
+output_dir: INJECTED
+save_steps: 200
+logging_steps: 1
+save_total_limit: 2
