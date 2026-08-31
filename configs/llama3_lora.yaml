@@ -9,7 +9,7 @@ model_type: AutoModelForCausalLM
 tokenizer_type: AutoTokenizer
 
 special_tokens:
-  pad_token: "<|end_of_text|>"
+  pad_token: "<|reserved_special_token_0|>"
 
 # === Dataset (injected during runtime) ===
 datasets:
