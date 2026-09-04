@@ -1,0 +1,56 @@
+# Axolotl configuration file for LoRA
+#
+# Author: Adam Zvara (xzvara01)
+# Date: 09/2026
+
+# === Base model ===
+base_model: Qwen/Qwen3-1.7B
+model_type: AutoModelForCausalLM
+tokenizer_type: AutoTokenizer
+
+# === Dataset (injected during runtime) ===
+datasets:
+  - path: INJECTED
+    type: alpaca
+
+# === Training ===
+seed: 10234
+sequence_len: 2048
+num_epochs: 5
+learning_rate: 1e-4
+
+micro_batch_size: 2
+gradient_accumulation_steps: 8
+
+early_stopping_patience: 3
+load_best_model_at_end: true
+
+# === Precision ===
+bf16: false
+fp16: false
+
+# === Memory & speed ===
+gradient_checkpointing: true
+
+# === LoRA adapter ===
+adapter: lora
+lora_r: 8
+lora_alpha: 16
+lora_dropout: 0.1
+
+# Target attention projections (best default for code models)
+lora_target_modules:
+  - q_proj
+  - v_proj
+
+# === Optimizer ===
+optimizer: adamw_torch
+
+# === Evaluation ===
+eval_steps: 20
+
+# === Logging & saving ===
+output_dir: INJECTED
+save_steps: 200
+logging_steps: 1
+save_total_limit: 2
